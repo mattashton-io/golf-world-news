@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Golf World News</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .model-output {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Golf World News</h1>
+    <button id="new-fact-button">Get a Fun Fact</button>
+    <div class="container">
+        <div class="model-output">
+            <h2>gemini-2.5-flash-lite</h2>
+            <p id="fact1-text"></p>
+        </div>
+        <div class="model-output">
+            <h2>gemini-3-pro-preview</h2>
+            <p id="fact2-text"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('new-fact-button').addEventListener('click', function() {
+            fetch('/get_news_one')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.fact1) {
+                        document.getElementById('fact1-text').innerText = data.fact1;
+                    } else if (data.error) {
+                        document.getElementById('fact1-text').innerText = 'Error: ' + data.error;
+                    }
+                });
+
+            fetch('/get_news_two')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.fact2) {
+                        document.getElementById('fact2-text').innerText = data.fact2;
+                    } else if (data.error) {
+                        document.getElementById('fact2-text').innerText = 'Error: ' + data.error;
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
