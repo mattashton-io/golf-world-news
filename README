@@ -9,5 +9,5 @@ gcloud run deploy hello-world-service --image YOUR_REGION-docker.pkg.dev/YOUR_PR
 
 To-Do:
 - connect to open-source golf data source
-- add scrollbar to generated output
-- content fits a fixed box. If more text than size of box, add scrollbar inside
+- The text boxes that contain generated outputs should be fixed in size (no more than 50% the height of the vertical screen dimension
+- re-deploy to CloudRun and Kubernetes with TF

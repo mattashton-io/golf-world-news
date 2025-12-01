@@ -41,7 +41,7 @@
         }
     </style>
 </head>
-<body class="h-screen flex flex-col items-center justify-center transition-colors duration-500">
+<body class="h-screen flex flex-col items-center justify-start pt-10 transition-colors duration-500">
     <div class="absolute top-4 right-4">
         <button id="theme-toggle" class="p-2 rounded-full focus:outline-none">
             <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -55,15 +55,15 @@
         </button>
     </div>
     <div class="container flex mt-6 max-w-4xl mx-auto">
-        <div class="model-output w-1/2 p-4 rounded-lg shadow-md min-h-[200px] max-h-[50vh] overflow-y-auto flex flex-col items-center justify-start transition-colors duration-500 mx-2">
-            <div>
-                <h2 class="text-2xl font-bold mb-4 sticky top-0 bg-inherit py-2">gemini-2.5-flash-lite</h2>
+        <div class="w-1/2 mx-2 flex flex-col">
+            <h2 class="text-2xl font-bold mb-2 text-center">gemini-2.5-flash-lite</h2>
+            <div class="model-output p-4 rounded-lg shadow-md min-h-[200px] max-h-[75vh] overflow-y-auto transition-colors duration-500">
                 <p id="fact1-text"></p>
             </div>
         </div>
-        <div class="model-output w-1/2 p-4 rounded-lg shadow-md min-h-[200px] max-h-[50vh] overflow-y-auto flex flex-col items-center justify-start transition-colors duration-500 mx-2">
-            <div>
-                <h2 class="text-2xl font-bold mb-4 sticky top-0 bg-inherit py-2">gemini-3-pro-preview</h2>
+        <div class="w-1/2 mx-2 flex flex-col">
+            <h2 class="text-2xl font-bold mb-2 text-center">gemini-3-pro-preview</h2>
+            <div class="model-output p-4 rounded-lg shadow-md min-h-[200px] max-h-[75vh] overflow-y-auto transition-colors duration-500">
                 <p id="fact2-text"></p>
             </div>
         </div>
@@ -112,7 +112,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.fact1) {
-                        fact1Text.textContent = data.fact1;
+                        fact1Text.innerHTML = data.fact1.replace(/\n/g, '<br>');
                     } else if (data.error) {
                         fact1Text.textContent = 'Error: ' + data.error;
                     }
@@ -126,7 +126,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.fact2) {
-                        fact2Text.textContent = data.fact2;
+                        fact2Text.innerHTML = data.fact2.replace(/\n/g, '<br>');
                     } else if (data.error) {
                         fact2Text.textContent = 'Error: ' + data.error;
                     }
@@ -134,7 +134,7 @@
                 .catch(error => {
                     fact2Text.textContent = 'Failed to fetch news. Please try again.';
                     console.error('Error:', error);
-                });                
+                });
         });
     </script>
 </body>
