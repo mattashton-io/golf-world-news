@@ -29,7 +29,7 @@ def index():
 @app.route('/get_news_one')
 def get_news_one():
     try:
-        prompt = "Tell me a different newsworthy updates in golf world news."
+        prompt = "Tell me a different newsworthy updates in golf world news. Format the output as paragraphs."
         response1 = model1.generate_content(prompt)
         return jsonify({'fact1': response1.text})
     except Exception as e:
@@ -38,7 +38,7 @@ def get_news_one():
 @app.route('/get_news_two')
 def get_news_two():
     try:
-        prompt = "Tell me a different newsworthy updates in golf world news."
+        prompt = "Tell me a different newsworthy updates in golf world news. Format the output as paragraphs."
         response2 = model2.generate_content(prompt)
         return jsonify({'fact2': response2.text})
     except Exception as e:
@@ -46,3 +46,4 @@ def get_news_two():
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+
